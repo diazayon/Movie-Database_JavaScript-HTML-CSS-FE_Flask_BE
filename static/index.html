@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    
+    <title>THE MOVIE DB</title>
+</head>
+<body>
+        <div class="headername"><strong>THE MOVIE DB</strong></div>
+        <div style="height: 5px"></div>
+       
+            <div class="tab">
+                <button class="tablinks" onclick="selectTab(event, 'Home')" id="defaultOpen">Home&nbsp;&nbsp;&emsp;&emsp;&xrarr;</button>
+                <button class="tablinks" onclick="selectTab(event, 'Search')" >Search&emsp;&emsp;&xrarr;</button>
+            </div>
+
+            <div id="Home" class="tabcontent">
+                <div id="trending" class= "requiredslides"></div>
+                <br>
+                <div id="ontoday" class= "requiredslides"></div>
+            <div id="emptydiv"></div>
+            <div class="footer"><i>Designed and developed by Akansha, Pranav & Yash; Reproduced by Danny<br>
+                    Powered by TMDB</i></div>
+            </div>
+
+
+            <div id="Search" class="tabcontent">
+                <div id='searchbox'>
+                    <form name="getData" >
+                        <div style="text-align:center;" ><h2>Search</h2></div>
+                        <div style="padding: 10px; padding-left:20%;">
+                            <label for="keyword">Keyword <span style="color:red;">*</span></label>
+                            &nbsp;&nbsp;
+                            <input id="keyword" type="text" name='keyword' size="60%" style="border-radius: 4px;">
+                        </div>
+                        <div style="padding: 10px; padding-left:20%;">
+                            <label for="category">Category <span style="color:red;">*</span></label>
+                            &nbsp;&nbsp;
+                            <select id="categorytype" name="category" style="border-radius: 4px;">
+                            <option value=""></option>
+                            <option value="Movies">Movies</option>
+                            <option value="TV Shows">TV Shows</option>
+                            <option value="Movies and TV Shows">Movies and TV Shows</option>
+                            </select>
+                        </div>
+                        <div style="padding: 5px; text-align:center;">
+                            <button type="button" class="searchbuttons" onclick= "return results();">Search</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="button" class="searchbuttons" onclick= "return clearout();">Clear</button>
+                        </div>
+                    </form>
+
+                    <div id="myModal" class="modal">
+                        <div id="thisone" class="modal-content">
+                            <span class="close">&times;</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="searchresult"></div>
+            <div class="footer"><i>Designed and developed by Akansha, Pranav & Yash; Reproduced by Danny<br>
+                    Powered by TMDB</i></div>
+            </div>
+
+</body>
+<script src="static/home.js"></script>
+<script src="static/getdata.js"></script>
+<script src="static/popup.js"></script>
+<script>
+   
+    function selectTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    
+    document.getElementById("defaultOpen").click();
+
+    function getURLParameter(name) {
+        return decodeURI((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
+    }
+    
+    function hideURLParams() {
+        var hide = ['success','error'];
+        for(var h in hide) {
+            if(getURLParameter(h)) {
+                history.replaceState(null, document.getElementsByTagName("title")[0].innerHTML, window.location.pathname);
+            }
+        }
+    }
+    
+    window.onload = hideURLParams;
+    
+</script>
+</html>
